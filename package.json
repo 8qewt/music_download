@@ -1,0 +1,22 @@
+{
+  "name": "music_download",
+  "version": "0.2.0",
+  "description": "从音乐网站上下音乐",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "music",
+    "download"
+  ],
+  "author": "fifth_light",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "browser-id3-writer": "^4.1.0",
+    "iconv-lite": "^0.4.24",
+    "jsdom": "^13.2.0",
+    "node-fetch": "^2.3.0",
+    "simple-netease-cloud-music": "^0.4.4"
+  }
+}
