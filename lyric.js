@@ -74,7 +74,7 @@ exports.toLrc = (data, compress) => {
     return result;
 }
 
-exports.mergeLyric = (lyric1, lyric2) => {
+exports.mergeLyric = (lyric1, lyric2, offset) => {
     var result = {
         metaDatas: {},
         textLines: []
@@ -93,6 +93,7 @@ exports.mergeLyric = (lyric1, lyric2) => {
     });
 
     lyric2.textLines.forEach(d => {
+        d.time += offset;
         if (d.text.trim()) result.textLines.push(d);
     });
 

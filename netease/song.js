@@ -10,21 +10,6 @@ exports.parse = async function(url) {
     return id;
 }
 exports.getInfo = async function(id, func, songData) {
-    /*
-        老的用JSDOM处理歌曲信息方式
-        let text = await fetch(`https://music.163.com/song?id=${id}`)
-            .then(res => res.text());
-        let dom = new JSDOM(text);
-        let cover = dom.window.document.querySelector("img.j-img").dataset.src;
-        let title = text.match(`data-res-name="(.*)"`)[1];
-        let subTitle;
-        if (dom.window.document.querySelector("div.subtit"))
-            subTitle = dom.window.document.querySelector("div.subtit").textContent;
-        let authors = text.match(`data-res-author="(.*)"`)[1].split("/");
-        let album = dom.window.document.querySelector(".des.s-fc4 > .s-fc7:first-child").textContent;
-        let dlURL = `http://music.163.com/song/media/outer/url?id=${id}.mp3`;
-    */
-
     let info;
     if (!songData) {
         info = await neteaseAPI.song(parseInt(id));
