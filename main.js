@@ -43,10 +43,10 @@ var filenameFormatReplacer;
 
 function filenameFormat(song) {
     var result;
-    if(global.flags["filename_format"] && !filenameFormatReplacer){
+    if (global.flags["filename_format"] && !filenameFormatReplacer) {
         filenameFormatReplacer = new stringReplacer(global.flags["filename_format"]);
     }
-    if(global.flags["filename_format"]){
+    if (global.flags["filename_format"]) {
         result = filenameFormatReplacer.replace({
             name: song.title,
             subname: song.subTitle,
@@ -75,7 +75,7 @@ var lyricFormatReplacer;
 
 function lyricProcess(song) {
     if (!global.flags["lyric_disable"] && song.lyric) {
-        if(global.flags["lyric_translate_format"] && !lyricFormatReplacer){
+        if (global.flags["lyric_translate_format"] && !lyricFormatReplacer) {
             lyricFormatReplacer = new stringReplacer(global.flags["lyric_translate_format"]);
         }
         let lyric = song.lyric;
@@ -84,10 +84,13 @@ function lyricProcess(song) {
         } else {
             if (lyric.lyric) {
                 if (lyric.translate && !global.flags["lyric_no_translate"]) {
-                    if(global.flags["lyric_translate_format"]){
+                    if (global.flags["lyric_translate_format"]) {
                         var data = parseLyric(lyric.lyric);
                         var tdata = parseLyric(lyric.translate);
-                        var result = {metaDatas: {}, textLines: []};
+                        var result = {
+                            metaDatas: {},
+                            textLines: []
+                        };
                         data.textLines.forEach((t) => {
                             var res;
                             for (var line of tdata.textLines) {
@@ -98,12 +101,18 @@ function lyricProcess(song) {
                             }
 
                             if (res) {
-                                result.textLines.push({time: t.time, text: lyricFormatReplacer.replace({
-                                    original: t.text,
-                                    translate: res.text
-                                })});
+                                result.textLines.push({
+                                    time: t.time,
+                                    text: lyricFormatReplacer.replace({
+                                        original: t.text,
+                                        translate: res.text
+                                    })
+                                });
                             } else {
-                                result.textLines.push({time: t.time, text: t.text});
+                                result.textLines.push({
+                                    time: t.time,
+                                    text: t.text
+                                });
                             }
 
                             for (var name in data.metaDatas) {
@@ -379,5 +388,5 @@ if (urls.length == 0) {
 -r, --lyric-compress      启用歌词压缩，将重复的歌词合并为一行，可能会造成不兼容
 -w, --windowsize          将下载的文件名中\\/:*?"<>|这些符号替换为空格
 
-music_download v0.3.0 by fifth_light`);
+music_download v0.3.1 by fifth_light`);
 }

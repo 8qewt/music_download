@@ -39,7 +39,7 @@ exports.getInfo = async function(id, func, songData) {
     }
 
     let lyric;
-    if (!global.flags["nolyric"]) {
+    if (!global.flags["lyric_disable"]) {
         /*
             老的接口方式，没有歌词翻译
             let lyricData = await fetch(`https://music.163.com/api/song/lyric?id=${id}&lv=1`)
