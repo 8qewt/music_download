@@ -6,6 +6,8 @@ exports.parse = async function(url) {
     var id = false;
     if (url.match("^http(s){0,1}://music.163.com/(#/){0,1}song\\?id=([0-9]+)$")) {
         id = parseInt(url.match("^http(s){0,1}://music.163.com/(#/){0,1}song\\?id=([0-9]+)$")[3]);
+    } else if (url.match("^http(s){0,1}://music.163.com/(#/){0,1}m/song\\?id=([0-9]+)$")) {
+        id = parseInt(url.match("^http(s){0,1}://music.163.com/(#/){0,1}m/song\\?id=([0-9]+)$")[3]);
     }
     return id;
 }
