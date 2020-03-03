@@ -19,7 +19,7 @@ exports.getInfo = async function(id, func, songData) {
     } else {
         info = songData;
     }
-    let cover = await neteaseAPI.picture(info.al.pic_str || String(info.al.pic), 256);
+    let cover = await neteaseAPI.picture(info.al.pic_str || String(info.al.pic), 65535);
     cover = cover.url;
     let title = info.name;
     let album = info.al.name;
