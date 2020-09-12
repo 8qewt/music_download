@@ -15,7 +15,7 @@
   "dependencies": {
     "browser-id3-writer": "^4.1.0",
     "iconv-lite": "^0.4.24",
-    "node-fetch": "^2.3.0",
+    "node-fetch": "^2.6.1",
     "simple-netease-cloud-music": "^0.4.4"
   }
 }
