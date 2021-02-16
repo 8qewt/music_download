@@ -391,5 +391,5 @@ if (urls.length == 0) {
 -r, --lyric-compress      启用歌词压缩，将重复的歌词合并为一行，可能会造成不兼容
 -w, --windowsize          将下载的文件名中\\/:*?"<>|这些符号替换为空格
 
-music_download v0.3.1 by fifth_light`);
+music_download v0.3.2 by fifth_light`);
 }
