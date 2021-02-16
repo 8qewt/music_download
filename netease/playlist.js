@@ -18,8 +18,9 @@ exports.parse = async function(url) {
 
 exports.getInfo = async function(id, func) {
     let info = await neteaseAPI.playlist(id);
-    info.playlist.tracks.forEach((data) => {
+    info.playlist.trackIds.forEach((data) => {
         let sid = data.id;
-        songParser.getInfo(sid, func, data);
+        // 没有data了 很可惜
+        songParser.getInfo(sid, func, null);
     });
 }

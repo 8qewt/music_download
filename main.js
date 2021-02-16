@@ -350,7 +350,7 @@ urls.forEach(url => {
                         if (song.dlURL) {
                             let filename = `./${name}.mp3`;
                             console.log(`文件下载中：${song.dlURL}`);
-                            let buffer = fetch(song.dlURL)
+                            fetch(song.dlURL)
                                 .then(res => res.buffer())
                                 .then((buffer) => {
                                     return tagBuffer(buffer, song);
@@ -362,10 +362,13 @@ urls.forEach(url => {
                                     });
                                 })
                                 .then(resolve)
+                                .catch(reject)
                         } else {
                             resolve();
                         }
                     });
+                }).catch(ex => {
+                    console.err(`下载时遇到错误：\n${ex}`)
                 })
             });
         })
