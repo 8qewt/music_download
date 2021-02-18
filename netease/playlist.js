@@ -1,5 +1,6 @@
 global.neteaseMusic = global.neteaseMusic || require('simple-netease-cloud-music');
 global.neteaseAPI = global.neteaseAPI || new neteaseMusic();
+global.asyncControl = global.asyncControl || require('./../asyncControl.js').asyncControl;
 
 var songParser = require("./song.js");
 
@@ -16,11 +17,16 @@ exports.parse = async function(url) {
     return id;
 }
 
+var ac = new global.asyncControl("playlist", 5);
+
 exports.getInfo = async function(id, func) {
     let info = await neteaseAPI.playlist(id);
     info.playlist.trackIds.forEach((data) => {
         let sid = data.id;
         // 没有data了 很可惜
-        songParser.getInfo(sid, func, null);
+        ac.append(async () => {
+            await songParser.getInfo(sid, func, null);
+            console.error(`网易云音乐歌单${id}: 获取歌曲${sid}的信息`)
+        });
     });
 }

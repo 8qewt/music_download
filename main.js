@@ -19,6 +19,7 @@ global.fetch = fetch;
 global.iconv = iconv;
 global.asyncControl = asyncControl;
 global.stringReplacer = stringReplacer;
+global.asyncControl = asyncControl;
 
 global.allflags = ["lyric_charset", "lyric_disable", "lyric_compress", "lyric_translate_format",
     "lyric_no_translate", "lyric_translate_offset", "filename_format", "filename_no_rename",
@@ -183,12 +184,12 @@ for (var i = 2; i < process.argv.length; i++) {
         case "--windowsize":
             if (!global.flags["filename_windowsize"]) {
                 if (global.flags["filename_no_rename"]) {
-                    console.err(`选项冲突：${arg}、--norename。`);
+                    console.error(`选项冲突：${arg}、--norename。`);
                     process.exit(2);
                 }
                 global.flags["filename_windowsize"] = true;
             } else {
-                console.err(`重复的选项：${arg}。`);
+                console.error(`重复的选项：${arg}。`);
                 process.exit(2);
             }
             break;
@@ -197,7 +198,7 @@ for (var i = 2; i < process.argv.length; i++) {
         case "--norename":
             if (!global.flags["filename_no_rename"]) {
                 if (global.flags["filename_windowsize"]) {
-                    console.err(`选项冲突：${arg}、--windowsize。`);
+                    console.error(`选项冲突：${arg}、--windowsize。`);
                     process.exit(2);
                 }
                 global.flags["filename_no_rename"] = true;
@@ -283,7 +284,7 @@ for (var i = 2; i < process.argv.length; i++) {
                 console.error(`重复的选项：${arg}。`);
                 process.exit(2);
             } else if (global.flags["lyric_translate_offset"]) {
-                console.err(`选项冲突：${arg}、--translate-offset。`);
+                console.error(`选项冲突：${arg}、--translate-offset。`);
                 process.exit(2);
             } else if (process.argv.length > i + 1) {
                 global.flags["lyric_translate_format"] = process.argv[i + 1];
@@ -300,7 +301,7 @@ for (var i = 2; i < process.argv.length; i++) {
                 console.error(`重复的选项：${arg}。`);
                 process.exit(2);
             } else if (global.flags["lyric_translate_format"]) {
-                console.err(`选项冲突：${arg}、--translate-format。`);
+                console.error(`选项冲突：${arg}、--translate-format。`);
                 process.exit(2);
             } else if (process.argv.length > i + 1) {
                 global.flags["lyric_translate_offset"] = parseInt(process.argv[i + 1]);
@@ -368,7 +369,7 @@ urls.forEach(url => {
                         }
                     });
                 }).catch(ex => {
-                    console.err(`下载时遇到错误：\n${ex}`)
+                    console.error(`下载时遇到错误：\n${ex}`)
                 })
             });
         })
